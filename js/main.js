@@ -31,16 +31,39 @@ const io = new IntersectionObserver((entries) => {
 io.observe(heroEl);
 io.observe(bookSection);
 
-// ---------- Booking form (visual for now — D1 hookup is Step 2) ----------
+// ---------- Booking form → POST /api/book ----------
 const form = document.getElementById('bookingForm');
 const status = document.getElementById('formStatus');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
+
   status.className = 'form-status';
   status.textContent = 'Sending...';
-  await new Promise(r => setTimeout(r, 700));
-  status.className = 'form-status ok';
-  status.textContent = '✓ Booking received! We\'ll WhatsApp you to confirm.';
-  form.reset();
+
+  const submitBtn = form.querySelector('button[type="submit"]');
+  if (submitBtn) submitBtn.disabled = true;
+
+  try {
+    const res = await fetch('/api/book', {
+      method: 'POST',
+      body: new FormData(form),
+    });
+
+    const data = await res.json();
+
+    if (data.ok) {
+      status.className = 'form-status ok';
+      status.textContent = '✓ Booking received! We\'ll WhatsApp you to confirm.';
+      form.reset();
+    } else {
+      status.className = 'form-status err';
+      status.textContent = 'Something went wrong. Please try again.';
+    }
+  } catch (err) {
+    status.className = 'form-status err';
+    status.textContent = 'Network error. Please try again.';
+  } finally {
+    if (submitBtn) submitBtn.disabled = false;
+  }
 });
