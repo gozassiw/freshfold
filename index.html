@@ -7,117 +7,15 @@
 <meta name="description" content="Laundry done right, picked up at your door. Book a pickup in 60 seconds." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-<style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  :root{
-    --primary:#2563eb;--primary-d:#1d4ed8;
-    --mint:#10b981;--mint-d:#059669;
-    --bg:#f8fafc;--card:#ffffff;
-    --text:#0f172a;--muted:#64748b;
-    --border:#e2e8f0;--radius:16px;
-    --max:520px;
-  }
-  html{scroll-behavior:smooth;}
-  body{font-family:Inter,system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;-webkit-font-smoothing:antialiased;}
-  .wrap{max-width:var(--max);margin:0 auto;background:var(--bg);min-height:100vh;overflow-x:hidden;}
-  a{color:inherit;text-decoration:none;}
-
-  /* NAV */
-  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 18px;display:flex;justify-content:space-between;align-items:center;}
-  .logo{font-weight:800;font-size:1.15rem;color:var(--primary);letter-spacing:-0.02em;}
-  .burger{font-size:1.5rem;color:var(--text);background:none;border:none;cursor:pointer;line-height:1;}
-  .nav__menu{display:none;flex-direction:column;background:#fff;border-bottom:1px solid var(--border);padding:0 18px;}
-  .nav__menu.open{display:flex;}
-  .nav__menu a{padding:14px 0;border-bottom:1px solid var(--border);font-weight:500;color:var(--muted);}
-  .nav__menu a:last-child{border-bottom:none;}
-  .nav__menu a:hover{color:var(--primary);}
-
-  /* BUTTONS */
-  .btn{display:block;width:100%;padding:15px 22px;border-radius:12px;font-weight:600;font-size:1rem;border:none;cursor:pointer;text-align:center;margin-bottom:10px;transition:transform 0.15s,box-shadow 0.15s;font-family:inherit;}
-  .btn:active{transform:scale(0.98);}
-  .btn-primary{background:var(--mint);color:#fff;box-shadow:0 6px 18px rgba(16,185,129,0.3);}
-  .btn-primary:hover{background:var(--mint-d);}
-  .btn-ghost{background:#fff;color:var(--text);border:1px solid var(--border);}
-  .btn-ghost:hover{background:#f1f5f9;}
-
-  /* HERO */
-  .hero{padding:44px 22px 40px;background:linear-gradient(180deg,#eff6ff 0%,#f8fafc 100%);text-align:center;}
-  .hero h1{font-size:1.95rem;font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin-bottom:14px;}
-  .hero h1 span{color:var(--primary);}
-  .hero p{color:var(--muted);font-size:1rem;margin-bottom:26px;}
-  .hero-img{margin:30px auto 0;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#dbeafe,#93c5fd);display:flex;align-items:center;justify-content:center;font-size:5rem;}
-
-  /* TRUST STRIP */
-  .trust{display:flex;justify-content:space-around;padding:18px 12px;background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);font-size:0.78rem;color:var(--muted);text-align:center;}
-  .trust b{display:block;color:var(--text);font-size:0.9rem;}
-  .trust > div{flex:1;}
-
-  /* SECTIONS */
-  section{padding:44px 22px;}
-  .section-title{font-size:1.5rem;font-weight:800;text-align:center;letter-spacing:-0.02em;margin-bottom:6px;}
-  .section-lead{text-align:center;color:var(--muted);margin-bottom:28px;font-size:0.95rem;}
-
-  /* STEPS */
-  .step{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;}
-  .step .num{min-width:36px;height:36px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;}
-  .step h3{font-size:1rem;margin-bottom:2px;}
-  .step p{font-size:0.85rem;color:var(--muted);}
-
-  /* SERVICES */
-  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .svc{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px 14px;text-align:center;transition:border-color 0.2s;}
-  .svc:hover{border-color:var(--primary);}
-  .svc .ico{font-size:2rem;margin-bottom:8px;}
-  .svc h3{font-size:0.95rem;margin-bottom:4px;}
-  .svc p{font-size:0.78rem;color:var(--muted);}
-
-  /* PRICING */
-  .price-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin-bottom:14px;text-align:center;position:relative;}
-  .price-card.featured{border:2px solid var(--primary);box-shadow:0 10px 30px rgba(37,99,235,0.12);}
-  .price-card .tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:0.68rem;font-weight:700;padding:4px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:0.04em;}
-  .price-card h3{font-size:1.05rem;margin-bottom:6px;}
-  .price-card .amt{font-size:2rem;font-weight:800;margin:8px 0 14px;letter-spacing:-0.02em;}
-  .price-card .amt span{font-size:0.85rem;color:var(--muted);font-weight:500;}
-  .price-card ul{list-style:none;text-align:left;margin-bottom:18px;font-size:0.9rem;color:var(--muted);}
-  .price-card li{padding:6px 0;border-bottom:1px solid var(--border);}
-  .price-card li:last-child{border:none;}
-  .price-card .btn{margin-bottom:0;}
-
-  /* FORM */
-  form{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
-  label{display:block;font-size:0.82rem;font-weight:600;color:var(--muted);margin-bottom:5px;margin-top:14px;}
-  label:first-of-type{margin-top:0;}
-  input,select,textarea{width:100%;padding:13px 14px;border:1px solid var(--border);border-radius:10px;font:inherit;background:#f8fafc;color:var(--text);outline:none;transition:border-color 0.2s,background 0.2s;}
-  input:focus,select:focus,textarea:focus{border-color:var(--primary);background:#fff;}
-  textarea{resize:vertical;min-height:80px;}
-  form .btn{margin-top:20px;}
-  .form-status{text-align:center;font-size:0.9rem;margin-top:12px;min-height:1.2em;}
-  .form-status.ok{color:var(--mint-d);}
-  .form-status.err{color:#dc2626;}
-
-  /* TESTIMONIALS */
-  .quote{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:18px;margin-bottom:12px;}
-  .stars{color:#f59e0b;font-size:0.9rem;margin-bottom:6px;letter-spacing:2px;}
-  .quote p{font-size:0.9rem;margin-bottom:8px;}
-  .quote .who{font-size:0.8rem;color:var(--muted);}
-
-  /* FOOTER */
-  footer{background:#0f172a;color:#cbd5e1;padding:36px 22px 24px;font-size:0.88rem;}
-  footer .flogo{color:#fff;font-weight:800;font-size:1.1rem;margin-bottom:14px;}
-  footer p{margin-bottom:6px;color:#94a3b8;}
-  footer .links{display:flex;gap:18px;margin:18px 0;font-size:0.85rem;}
-  footer .links a{color:#94a3b8;}
-  footer .links a:hover{color:#fff;}
-  footer .copy{border-top:1px solid #1e293b;padding-top:16px;font-size:0.78rem;color:#64748b;}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <div class="wrap">
 
   <!-- NAV -->
-  <header class="nav">
-    <a href="#" class="logo">🧺 FreshFold</a>
+  <header class="nav" id="nav">
+    <a href="#" class="logo"><span class="basket">🧺</span> FreshFold</a>
     <button class="burger" id="burger" aria-label="Menu">☰</button>
   </header>
   <nav class="nav__menu" id="menu">
@@ -129,11 +27,14 @@
 
   <!-- HERO -->
   <div class="hero">
-    <h1>Laundry done right, <span>picked up at your door</span></h1>
+    <div class="hero__badge">
+      <span class="star">⭐</span> Trusted by 2,000+ Lagos homes
+    </div>
+    <h1>Laundry done right, <span class="accent">picked up at your door</span></h1>
     <p>Book a pickup in 60 seconds. We wash, fold, and deliver within 24 hours.</p>
     <a href="#book" class="btn btn-primary">📅 Book a Pickup</a>
     <a href="#how" class="btn btn-ghost">See how it works ↓</a>
-    <div class="hero-img">🧺</div>
+    <div class="hero__img">🧺</div>
   </div>
 
   <!-- TRUST STRIP -->
@@ -145,27 +46,31 @@
 
   <!-- HOW IT WORKS -->
   <section id="how">
+    <div class="section-eyebrow">Simple process</div>
     <h2 class="section-title">How it works</h2>
-    <p class="section-lead">Three simple steps.</p>
+    <p class="section-lead">Three steps from pile to folded.</p>
 
-    <div class="step">
-      <div class="num">1</div>
-      <div><h3>Book online</h3><p>Pick a pickup date and time slot that suits you.</p></div>
-    </div>
-    <div class="step">
-      <div class="num">2</div>
-      <div><h3>We pick up</h3><p>From your door — free within our service area.</p></div>
-    </div>
-    <div class="step">
-      <div class="num">3</div>
-      <div><h3>Delivered fresh</h3><p>Washed, folded, and back within 24 hours.</p></div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div><h3>Book online</h3><p>Pick a pickup date and time slot that suits you.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div><h3>We pick up</h3><p>From your door — free within our service area.</p></div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div><h3>Delivered fresh</h3><p>Washed, folded, and back within 24 hours.</p></div>
+      </div>
     </div>
   </section>
 
   <!-- SERVICES -->
   <section id="services" style="background:#fff;">
+    <div class="section-eyebrow">What we clean</div>
     <h2 class="section-title">Our services</h2>
-    <p class="section-lead">Whatever you need cleaned.</p>
+    <p class="section-lead">Whatever you need cleaned — we've got you.</p>
     <div class="grid2">
       <div class="svc"><div class="ico">👕</div><h3>Wash & Fold</h3><p>From ₦2,500</p></div>
       <div class="svc"><div class="ico">👔</div><h3>Dry Cleaning</h3><p>From ₦1,500</p></div>
@@ -176,6 +81,7 @@
 
   <!-- PRICING -->
   <section id="pricing">
+    <div class="section-eyebrow">Transparent</div>
     <h2 class="section-title">Simple pricing</h2>
     <p class="section-lead">No hidden fees. Pay after delivery.</p>
 
@@ -183,10 +89,10 @@
       <h3>Per Bag</h3>
       <div class="amt">₦7,500<span>/bag</span></div>
       <ul>
-        <li>✓ Up to 8kg of laundry</li>
-        <li>✓ Wash, dry & fold</li>
-        <li>✓ Free pickup & delivery</li>
-        <li>✓ 24h turnaround</li>
+        <li>Up to 8kg of laundry</li>
+        <li>Wash, dry & fold</li>
+        <li>Free pickup & delivery</li>
+        <li>24h turnaround</li>
       </ul>
       <a href="#book" class="btn btn-ghost">Book now</a>
     </div>
@@ -196,10 +102,10 @@
       <h3>Per Item</h3>
       <div class="amt">From ₦500<span>/item</span></div>
       <ul>
-        <li>✓ Dry cleaning</li>
-        <li>✓ Ironing & pressing</li>
-        <li>✓ Specialty fabrics</li>
-        <li>✓ 48h turnaround</li>
+        <li>Dry cleaning</li>
+        <li>Ironing & pressing</li>
+        <li>Specialty fabrics</li>
+        <li>48h turnaround</li>
       </ul>
       <a href="#book" class="btn btn-primary">Book now</a>
     </div>
@@ -207,7 +113,8 @@
 
   <!-- BOOKING FORM -->
   <section id="book" style="background:#fff;">
-    <h2 class="section-title">Book a pickup 📅</h2>
+    <div class="section-eyebrow">Ready in 60 seconds</div>
+    <h2 class="section-title">Book a pickup</h2>
     <p class="section-lead">We'll confirm by WhatsApp.</p>
 
     <form id="bookingForm">
@@ -248,18 +155,25 @@
 
   <!-- TESTIMONIALS -->
   <section>
+    <div class="section-eyebrow">Loved by customers</div>
     <h2 class="section-title">What customers say</h2>
     <p class="section-lead">Real reviews from happy customers.</p>
 
     <div class="quote">
       <div class="stars">★★★★★</div>
       <p>"Picked up in an hour, back next morning. Life changing."</p>
-      <div class="who">— Ada, Lekki</div>
+      <div class="who">
+        <span class="avatar">A</span>
+        <span>Ada, Lekki</span>
+      </div>
     </div>
     <div class="quote">
       <div class="stars">★★★★★</div>
       <p>"My shirts have never looked this good. Highly recommend."</p>
-      <div class="who">— Tunde, Ikeja</div>
+      <div class="who">
+        <span class="avatar mint">T</span>
+        <span>Tunde, Ikeja</span>
+      </div>
     </div>
   </section>
 
@@ -269,6 +183,7 @@
     <p>📞 +234 800 000 0000</p>
     <p>✉️ hello@freshfold.com</p>
     <p>📍 Lagos, Nigeria</p>
+    <a href="https://wa.me/2348000000000" class="wa">💬 Chat on WhatsApp</a>
     <div class="links">
       <a href="#">Privacy</a>
       <a href="#">Terms</a>
@@ -277,10 +192,15 @@
     <div class="copy">© 2026 FreshFold. All rights reserved.</div>
   </footer>
 
+  <!-- STICKY BOTTOM CTA -->
+  <div class="sticky-cta" id="stickyCta">
+    <a href="#book" class="btn btn-primary">📅 Book a Pickup</a>
+  </div>
+
 </div>
 
 <script>
-  // Mobile menu toggle
+  // Menu toggle
   const burger = document.getElementById('burger');
   const menu = document.getElementById('menu');
   burger.addEventListener('click', () => menu.classList.toggle('open'));
@@ -288,7 +208,30 @@
     a.addEventListener('click', () => menu.classList.remove('open'))
   );
 
-  // Booking form — placeholder for now (Step 5 will save to Cloudflare D1)
+  // Nav shadow on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  // Sticky CTA visibility
+  const sticky = document.getElementById('stickyCta');
+  const bookSection = document.getElementById('book');
+  const heroEl = document.querySelector('.hero');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.target === heroEl) {
+        sticky.classList.toggle('visible', !e.isIntersecting);
+      }
+      if (e.target === bookSection && e.isIntersecting) {
+        sticky.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  io.observe(heroEl);
+  io.observe(bookSection);
+
+  // Booking form (visual for now)
   const form = document.getElementById('bookingForm');
   const status = document.getElementById('formStatus');
   form.addEventListener('submit', async (e) => {
